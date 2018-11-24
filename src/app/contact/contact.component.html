@@ -1,0 +1,28 @@
+<div class="container" id="lemessage">
+    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+            <h5 class="alert alert-danger" *ngIf="!success && submitted"> Invalid message or name </h5>
+        <div class="form-group row">
+            <label for="email" class="col-sm-2"  >e-mail:</label>
+            <input type="email" class="form-control col-sm-10" formControlName="email">
+            <div *ngIf="submitted && messageForm.controls.email.errors" class="error">
+            <div *ngIf="messageForm.controls.email.errors.required">Your email is required</div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="message" class="col-sm-2">Message:</label>
+            <textarea formControlName="message" class="form-control col-sm-10"></textarea>
+            <div *ngIf="submitted && messageForm.controls.message.errors">
+                <div *ngIf="submitted && messageForm.controls.message.errors.required">A message is required</div>
+            </div>
+        </div>
+        <button class="btn btn-primary">submit</button>
+    </form>
+    <div *ngIf="submitted">
+        <Strong>email:</Strong>
+        <span> {{ messageForm.controls.email.value }} </span><br>
+
+        <Strong>Message</Strong>
+        <span> {{ messageForm.controls.message.value  }} </span>
+    </div>
+</div>
